@@ -1,0 +1,33 @@
+import { useSelector } from 'react-redux'
+import useEnglishMovie from '../hooks/useEnglishMovie'
+import useKoreaMovies from '../hooks/useKoreaMovies'
+import useNewMovies from '../hooks/useNewMovies'
+import GptSearch from './GptSearch'
+import Header from './Header'
+import MainContainer from './MainContainer'
+import SecondaryContainer from './SecondaryContainer'
+
+
+const Browse = () => {
+  const showGptSearch=useSelector((store)=>store.gpt?.showGptSearch)
+  useNewMovies()
+  useEnglishMovie()
+  useKoreaMovies()
+  return (
+    <div className=' min-h-screen '>
+      <Header/>
+
+    
+    {showGptSearch?  <GptSearch/>:
+      <>
+      <MainContainer/>
+      <SecondaryContainer/>
+      
+      </>
+    }
+      
+    </div>
+  )
+}
+
+export default Browse
